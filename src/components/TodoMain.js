@@ -1,13 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
-import { changeDone, delTodo } from "../store/actions/todos";
+import {
+  changeCheckAllAction,
+  changeDone,
+  delTodo,
+} from "../store/actions/todos";
 
 const TodoMain = () => {
   const { todos } = useSelector((state) => state);
-
+  const ischeckAll = todos.every((item) => item.done);
   const dispatch = useDispatch();
   return (
     <section className="main">
-      <input id="toggle-all" className="toggle-all" type="checkbox" />
+      <input
+        id="toggle-all"
+        className="toggle-all"
+        type="checkbox"
+        checked={ischeckAll}
+        onChange={() => dispatch(changeCheckAllAction(ischeckAll))}
+      />
       <label htmlFor="toggle-all">Mark all as complete</label>
       <ul className="todo-list">
         {todos.map((item) => (

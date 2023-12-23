@@ -1,4 +1,9 @@
-import { CHANGE_DONE, DEL_TODO } from "../actionTypes/todos";
+import {
+  ADD_TODO,
+  CHANGE_ALL,
+  CHANGE_DONE,
+  DEL_TODO,
+} from "../actionTypes/todos";
 
 const initState = [
   { id: 1, name: "干饭", done: false },
@@ -7,6 +12,7 @@ const initState = [
 ];
 
 function todos(state = initState, actions) {
+  // eslint-disable-next-line default-case
   switch (actions.type) {
     case DEL_TODO:
       return state.filter((item) => item.id !== actions.payload);
@@ -20,6 +26,14 @@ function todos(state = initState, actions) {
         }
         return item;
       });
+    case ADD_TODO:
+      return [...state, actions.payload];
+    case CHANGE_ALL:
+      console.log(actions.payload);
+      return state.map((item) => ({
+        ...item,
+        done: !actions.payload,
+      }));
   }
   return state;
 }
