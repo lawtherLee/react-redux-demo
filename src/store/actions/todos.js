@@ -1,4 +1,4 @@
-import {ADD_TODO, CHANGE_ALL, CHANGE_DONE, DEL_TODO, UPDATE_NAME,} from "../actionTypes/todos";
+import {ADD_TODO, CHANGE_ALL, CHANGE_DONE, CLEAR_DONE, DEL_TODO, UPDATE_NAME,} from "../actionTypes/todos";
 
 /**
  * 删除任务的action
@@ -47,4 +47,8 @@ export const changeCheckAllAction = (payload) => ({
 export const updateNameAction = (payload) => ({
   type: UPDATE_NAME,
   payload,
+});
+
+export const clearDoneAction = () => ({
+  type: CLEAR_DONE,
 });

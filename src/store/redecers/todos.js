@@ -2,6 +2,7 @@ import {
   ADD_TODO,
   CHANGE_ALL,
   CHANGE_DONE,
+  CLEAR_DONE,
   DEL_TODO,
   UPDATE_NAME,
 } from "../actionTypes/todos";
@@ -44,6 +45,8 @@ function todos(state = initState, actions) {
         }
         return item;
       });
+    case CLEAR_DONE:
+      return state.filter((item) => !item.done);
   }
   return state;
 }
