@@ -11,7 +11,7 @@ const TodoHeader = () => {
     if (!name) return alert("不能为空");
     dispatch(
       addTodoAction({
-        id: todos.length,
+        id: Math.random(),
         name,
         done: false,
       }),

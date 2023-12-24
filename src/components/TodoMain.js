@@ -1,42 +1,25 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  changeCheckAllAction,
-  changeDone,
-  delTodo,
-} from "../store/actions/todos";
+import { changeCheckAllAction } from "../store/actions/todos";
+import TodoItem from "./TodoItem";
 
 const TodoMain = () => {
   const { todos } = useSelector((state) => state);
-  const ischeckAll = todos.every((item) => item.done);
+  const isCheckAll = todos.every((item) => item.done);
   const dispatch = useDispatch();
+
   return (
     <section className="main">
       <input
         id="toggle-all"
         className="toggle-all"
         type="checkbox"
-        checked={ischeckAll}
-        onChange={() => dispatch(changeCheckAllAction(ischeckAll))}
+        checked={isCheckAll}
+        onChange={() => dispatch(changeCheckAllAction(isCheckAll))}
       />
       <label htmlFor="toggle-all">Mark all as complete</label>
       <ul className="todo-list">
         {todos.map((item) => (
-          <li key={item.id}>
-            <div className="view">
-              <input
-                className="toggle"
-                type="checkbox"
-                checked={item.done}
-                onChange={() => dispatch(changeDone(item.id))}
-              />
-              <label>{item.name}</label>
-              <button
-                className="destroy"
-                onClick={() => dispatch(delTodo(item.id))}
-              />
-            </div>
-            <input className="edit" defaultValue="Create a TodoMVC template" />
-          </li>
+          <TodoItem key={item.id} item={item} />
         ))}
       </ul>
     </section>

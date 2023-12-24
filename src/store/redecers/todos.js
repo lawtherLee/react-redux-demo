@@ -3,6 +3,7 @@ import {
   CHANGE_ALL,
   CHANGE_DONE,
   DEL_TODO,
+  UPDATE_NAME,
 } from "../actionTypes/todos";
 
 const initState = [
@@ -29,11 +30,20 @@ function todos(state = initState, actions) {
     case ADD_TODO:
       return [...state, actions.payload];
     case CHANGE_ALL:
-      console.log(actions.payload);
       return state.map((item) => ({
         ...item,
         done: !actions.payload,
       }));
+    case UPDATE_NAME:
+      return state.map((item) => {
+        if (item.id === actions.payload.id) {
+          return {
+            ...item,
+            name: actions.payload.name,
+          };
+        }
+        return item;
+      });
   }
   return state;
 }

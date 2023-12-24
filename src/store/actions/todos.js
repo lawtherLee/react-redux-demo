@@ -1,4 +1,4 @@
-import {ADD_TODO, CHANGE_ALL, CHANGE_DONE, DEL_TODO,} from "../actionTypes/todos";
+import {ADD_TODO, CHANGE_ALL, CHANGE_DONE, DEL_TODO, UPDATE_NAME,} from "../actionTypes/todos";
 
 /**
  * 删除任务的action
@@ -29,7 +29,22 @@ export const addTodoAction = (payload) => ({
   payload,
 });
 
+/**
+ * 全选
+ * @param payload
+ * @returns {{payload, type: string}}
+ */
 export const changeCheckAllAction = (payload) => ({
   type: CHANGE_ALL,
+  payload,
+});
+
+/**
+ * 编辑
+ * @param payload
+ * @returns {{payload, type: string}}
+ */
+export const updateNameAction = (payload) => ({
+  type: UPDATE_NAME,
   payload,
 });
